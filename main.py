@@ -141,4 +141,3 @@ test_prompt = "The goal of model pruning is"
 print("\n=== Generated text after pruning ===")
 print(generate_text(test_prompt))
 
-
