@@ -2,7 +2,7 @@ import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 MODEL_NAME = "distilgpt2"   # LLM nhỏ, giống foundation model thu nhỏ
-SPARSITY = 0.3             # 30% sparsity (prune 30% weight)
+SPARSITY = 0.1             # 30% sparsity (prune 30% weight)
 DEVICE = "cpu"  
 
 # ================================

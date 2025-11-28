@@ -21,7 +21,7 @@ for split in splits:
     output_file = data_dir / split / f"{split}_small.jsonl"
     
     if input_file.exists():
-        reduce_jsonl(input_file, output_file, max_lines=100)
+        reduce_jsonl(input_file, output_file, max_lines=256)
     else:
         print(f"⚠ File not found: {input_file}")
 
