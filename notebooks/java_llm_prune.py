@@ -13,7 +13,8 @@ SAVE_DIR = "./QwenCoder3B_JavaPruned-5"
 print("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16, device_map="auto")
-model.eval()
+model.eval() # switch to evaluation mode
+
 
 # Load Calibration Data 
 print("Loading Java calibration samples...")
