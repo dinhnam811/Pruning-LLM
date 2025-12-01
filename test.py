@@ -1,7 +1,7 @@
 from transformers import pipeline
 import torch
 
-model_path = r"C:\Users\namnd\Documents\Qwen-Coder-Prunned-10"
+model_path = r"C:\Users\namnd\Documents\Qwen-Coder-Prunned-NEW"
 
 print("Loading model...")
 generator = pipeline(
@@ -13,6 +13,6 @@ generator = pipeline(
 )
 
 print("\nTesting...")
-prompt = "Write a Java hello world"
+prompt = "Hello how are your"
 response = generator(prompt, max_new_tokens=100)
 print(response[0]['generated_text'])
