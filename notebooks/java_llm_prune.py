@@ -79,10 +79,10 @@ def wanda_prune(model, sparsity, param_act_scales):
     pruned_count = total_params = 0
 
     for name, param in model.named_parameters():
-        if name in param_act_scales and param.dim() == 2:
+        if name in param_act_scales and param.dim() == 2: # Only prune Linear weights
             act_scale = param_act_scales[name].to(param.device)
 
-            # Verify dimensions match
+            # Verify dimensions match (act scale might be on CPU)
             if act_scale.size(0) != param.size(1):
                 continue
 
