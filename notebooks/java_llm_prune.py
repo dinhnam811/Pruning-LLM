@@ -34,11 +34,11 @@ def collect_activations(model, tokenizer, texts):
     target_modules = {}
     param_to_module = {}
 
-    # Find target layers
+    # Find target layers and store to a dict
     for name, module in model.named_modules():
         if isinstance(module, torch.nn.Linear) and any(k in name for k in target_keywords):
-            target_modules[name] = module
-            param_to_module[f"{name}.weight"] = name
+            target_modules[name] = module # map layer object to install hook
+            param_to_module[f"{name}.weight"] = name # map param name to module name
 
     print(f"Targeting {len(target_modules)} layers for pruning")
     activations = {name: [] for name in target_modules}
@@ -65,7 +65,7 @@ def collect_activations(model, tokenizer, texts):
         h.remove()
 
     # Average activations across all samples
-    print("Computing activation scales...")
+    print("Computing activation scalevs...")
     param_act_scales = {}
     for pname, mname in param_to_module.items():
         if activations[mname]:
