@@ -3,20 +3,21 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset
 from tqdm import tqdm
 
-# Configuration 
+# Configuration
 MODEL_NAME = "Qwen/Qwen2.5-Coder-3B-Instruct"
-SPARSITY = 0.05  # 5% pruning
-CALIBRATION_SIZE = 80
-SAVE_DIR = "./QwenCoder3B_JavaPruned-5"
+SPARSITY = 0.2  # Percent of pruning
+CALIBRATION_SIZE = 126
+SAVE_DIR = "./QwenCoder3B_JavaPruned-20"
 
 # Load Model
 print("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16, device_map="auto")
+print("Load done")
 model.eval() # switch to evaluation mode
 
 
-# Load Calibration Data 
+# Load Calibration Data
 print("Loading Java calibration samples...")
 dataset = load_dataset("json", data_files={
     "train": "/content/drive/MyDrive/Colab Notebooks/data/train/train_small.jsonl",
@@ -26,7 +27,7 @@ dataset = load_dataset("json", data_files={
 texts = [ex["code"] for ex in dataset["train"].select(range(min(CALIBRATION_SIZE, len(dataset["train"]))))]
 print(f"Using {len(texts)} calibration samples")
 
-# Collect Layer Activations (Wanda Technique) 
+# Collect Layer Activations (Wanda Technique)
 def collect_activations(model, tokenizer, texts):
     """Collects activation scales for target Linear layers using Wanda technique."""
     torch.manual_seed(42)
@@ -73,7 +74,7 @@ def collect_activations(model, tokenizer, texts):
 
     return param_act_scales
 
-# Wanda Pruning 
+# Wanda Pruning
 def wanda_prune(model, sparsity, param_act_scales):
     """Prunes model using Wanda (Weights AND Activations) technique."""
     pruned_count = total_params = 0
@@ -104,13 +105,13 @@ def wanda_prune(model, sparsity, param_act_scales):
     print(f"Pruned {pruned_count:,} / {total_params:,} params ({pruned_count/total_params:.2%})")
     return model
 
-# Execute Pruning 
+# Execute Pruning
 print("\n" + "="*50)
 param_act_scales = collect_activations(model, tokenizer, texts)
 print("="*50 + "\n")
 model = wanda_prune(model, SPARSITY, param_act_scales)
 
-# Save Pruned Model 
+# Save Pruned Model
 print(f"\nSaving to {SAVE_DIR}...")
 model.save_pretrained(SAVE_DIR, safe_serialization=True)
 tokenizer.save_pretrained(SAVE_DIR)
