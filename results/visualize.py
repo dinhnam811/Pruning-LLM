@@ -1,143 +1,167 @@
+"""
+Simple visualization script for LLM evaluation results
+Focuses on per-model statistics: Average, Min, Max pass rates
+"""
+
 import re
 import matplotlib.pyplot as plt
+import numpy as np
 import os
 from pathlib import Path
+from collections import defaultdict
 
-# Function to extract evaluation summary data
+
 def parse_eval_summary(text):
-    total = re.search(r"Total Samples:\s*(\d+)", text)
-    perfect = re.search(r"Perfect.*?:\s*(\d+)", text)
-    partial = re.search(r"Partial.*?:\s*(\d+)", text)
-    failed = re.search(r"Failed.*?:\s*(\d+)", text)
+    """Extract average pass rate from evaluation text file."""
     avg_pass = re.search(r"Average Pass Rate:\s*([\d.]+)%", text)
-    return {
-        "total": int(total.group(1)) if total else 0,
-        "perfect": int(perfect.group(1)) if perfect else 0,
-        "partial": int(partial.group(1)) if partial else 0,
-        "failed": int(failed.group(1)) if failed else 0,
-        "avg_pass_rate": float(avg_pass.group(1)) if avg_pass else 0,
+    return float(avg_pass.group(1)) if avg_pass else 0.0
+
+
+def collect_all_results(results_dir='.'):
+    """Collect all result files organized by model type."""
+    # Manually specify the files for each model type
+    file_mapping = {
+        'Origin': [
+            'Origin-Qwen-eval-instruction-follow-1.txt',
+            'Origin-Qwen-eval-instruction-follow-2.txt',
+            'Original-Qwen-eval-instruction-follow-3.txt',
+            'Original-Qwen-eval-instruction-follow-4.txt',
+            'Original-Qwen-eval-instruction-follow-5.txt',
+            'Original-Qwen-eval-instruction-follow-6.txt',
+            'Original-Qwen-eval-instruction-follow-7.txt',
+            'Original-Qwen-eval-instruction-follow-8.txt',
+            'Original-Qwen-eval-instruction-follow-9.txt',
+            'Original-Qwen-eval-instruction-follow-10.txt'
+        ],
+        '40': [
+            '40-Qwen-eval-instruction-follow-1st.txt',
+            '40-Qwen-eval-instruction-follow-2rd.txt',
+            '40-Qwen-eval-instruction-follow-3rd.txt'
+        ],
+        '20': [
+            '20-Qwen-eval-instruction-follow-1st.txt',
+            '20-Qwen-eval-instruction-follow-2nd.txt'
+        ],
+        '5': [
+            '5-Qwen-eval-instruction-follow-1st.txt',
+            '5-Qwen-eval-instruction-follow-2nd.txt',
+            '5-Qwen-eval-instruction-follow-3rd.txt'
+        ]
     }
 
-# Get the directory where the script is located
-script_dir = Path(__file__).parent
-results_dir = script_dir
+    results = defaultdict(list)
 
-# Organize files by version
-versions = {
-    "Qwen-5": [],
-    "Qwen-20": [],
-    "Qwen-40": [],
-    "Original": []
-}
+    for model_type, filenames in file_mapping.items():
+        for filename in filenames:
+            filepath = os.path.join(results_dir, filename)
+            if os.path.exists(filepath):
+                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                    text = f.read()
+                pass_rate = parse_eval_summary(text)
+                results[model_type].append(pass_rate)
+            else:
+                print(f"⚠ Warning: {filename} not found")
 
-# Scan for all evaluation files
-for file in os.listdir(results_dir):
-    if file.endswith(".txt") and "Qwen" in file:
-        file_path = results_dir / file
-        if file.startswith("5-"):
-            versions["Qwen-5"].append(str(file_path))
-        elif file.startswith("20-"):
-            versions["Qwen-20"].append(str(file_path))
-        elif file.startswith("40-"):
-            versions["Qwen-40"].append(str(file_path))
-        elif file.startswith("Origin"):
-            versions["Original"].append(str(file_path))
+    return results
 
-# Parse all files for each version
-version_data = {}
-for version_name, file_paths in versions.items():
-    if not file_paths:
-        continue
 
-    runs_data = []
-    for path in sorted(file_paths):
-        with open(path, "r", encoding="utf-8", errors="ignore") as f:
-            text = f.read()
-        runs_data.append(parse_eval_summary(text))
+def calculate_model_stats(all_results):
+    """Calculate average, min, max scores for each model."""
+    model_stats = {}
 
-    version_data[version_name] = runs_data
+    for model_type, pass_rates in all_results.items():
+        if not pass_rates:
+            continue
 
-# Calculate max pass rate for each version
-max_pass_rates = {}
-for version_name, runs in version_data.items():
-    max_pass_rates[version_name] = max([run["avg_pass_rate"] for run in runs])
+        model_stats[model_type] = {
+            'average': np.mean(pass_rates),
+            'min': np.min(pass_rates),
+            'max': np.max(pass_rates),
+            'std': np.std(pass_rates),
+            'runs': len(pass_rates)
+        }
 
-# Plot 1: Max Pass Rate Comparison
-plt.figure(figsize=(10, 6))
-versions_list = list(max_pass_rates.keys())
-max_rates = list(max_pass_rates.values())
-colors_bar = ["#3498db", "#9b59b6", "#e67e22", "#2ecc71"]
-bars = plt.bar(versions_list, max_rates, color=colors_bar, edgecolor='black', linewidth=1.5)
+    return model_stats
 
-# Add value labels on bars
-for bar in bars:
-    height = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width()/2., height,
-             f'{height:.1f}%',
-             ha='center', va='bottom', fontsize=12, fontweight='bold')
 
-plt.ylabel("Pass Rate (%)", fontsize=12)
-plt.xlabel("Model Version", fontsize=12)
-plt.title("Maximum Pass Rate Comparison Across Qwen Versions", fontsize=14, fontweight='bold')
+def plot_model_stats(model_stats, output_file='model_stats_comparison.png'):
+    """Visualize average, min, max for each model."""
+    models = sorted(model_stats.keys(), key=lambda x: (x != 'Origin', x))
+    averages = [model_stats[m]['average'] for m in models]
+    mins = [model_stats[m]['min'] for m in models]
+    maxs = [model_stats[m]['max'] for m in models]
 
-# Dynamic y-axis: set range based on data with some padding
-min_rate = min(max_rates)
-max_rate = max(max_rates)
-range_padding = (max_rate - min_rate) * 0.2  # 20% padding
-plt.ylim(0,100)
+    x = np.arange(len(models))
+    width = 0.25
 
-plt.grid(axis="y", linestyle="--", alpha=0.5)
-plt.tight_layout()
-plt.savefig(results_dir / "max_pass_rate_comparison.png", dpi=300, bbox_inches='tight')
-plt.show()
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-# Plot 2-5: Individual bar charts for each version showing all runs
-fig, axes = plt.subplots(2, 2, figsize=(16, 12))
-axes = axes.flatten()
+    bars1 = ax.bar(x - width, mins, width, label='Min', alpha=0.8, color='#ff7f0e')
+    bars2 = ax.bar(x, averages, width, label='Average', alpha=0.8, color='#2ca02c')
+    bars3 = ax.bar(x + width, maxs, width, label='Max', alpha=0.8, color='#1f77b4')
 
-colors_stacked = ["#2ecc71", "#f1c40f", "#e74c3c"]
-version_names = list(version_data.keys())
-
-for idx, (version_name, runs) in enumerate(version_data.items()):
-    ax = axes[idx]
-
-    # Prepare data for this version
-    run_labels = [f"Run {i+1}" for i in range(len(runs))]
-    pass_rates = [run["avg_pass_rate"] for run in runs]
-
-    # Create simple bar chart (same style as main comparison)
-    x_pos = range(len(run_labels))
-    bars = ax.bar(x_pos, pass_rates, color=colors_bar[idx], edgecolor='black', linewidth=1.5)
+    ax.set_xlabel('Model Type', fontsize=12)
+    ax.set_ylabel('Pass Rate (%)', fontsize=12)
+    ax.set_title('Model Performance: Average, Min, Max Pass Rates', fontsize=14, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(models)
+    ax.legend()
+    ax.grid(axis='y', alpha=0.3)
 
     # Add value labels on bars
-    for bar in bars:
-        height = bar.get_height()
-        ax.text(bar.get_x() + bar.get_width()/2., height,
-                f'{height:.1f}%',
-                ha='center', va='bottom', fontsize=10, fontweight='bold')
+    for bars in [bars1, bars2, bars3]:
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2., height,
+                   f'{height:.1f}',
+                   ha='center', va='bottom', fontsize=9)
+
+    plt.tight_layout()
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    print(f"✓ Saved: {output_file}")
+    plt.show()
 
 
-    ax.set_ylabel("Pass Rate (%)", fontsize=11)
-    ax.set_title(f"{version_name} - Evaluation Results", fontsize=13, fontweight='bold')
-    ax.set_xticks(x_pos)
-    ax.set_xticklabels(run_labels)
-    ax.set_ylim(0, 100)
-    ax.grid(axis="y", linestyle="--", alpha=0.5)
+def print_summary(model_stats):
+    """Print summary statistics."""
+    print("\n" + "="*80)
+    print("MODEL STATISTICS SUMMARY")
+    print("="*80)
+    print(f"{'Model':<10} {'Runs':<8} {'Average':<10} {'Min':<10} {'Max':<10} {'Std Dev':<10}")
+    print("-"*80)
 
-plt.tight_layout()
-plt.savefig(results_dir / "individual_version_results.png", dpi=300, bbox_inches='tight')
-plt.show()
+    for model in sorted(model_stats.keys(), key=lambda x: (x != 'Origin', x)):
+        stats = model_stats[model]
+        print(f"{model:<10} {stats['runs']:<8} {stats['average']:<10.2f} "
+              f"{stats['min']:<10.2f} {stats['max']:<10.2f} {stats['std']:<10.2f}")
 
-# Print summary statistics
-print("\n" + "="*80)
-print("SUMMARY STATISTICS")
-print("="*80)
-for version_name, runs in version_data.items():
-    print(f"\n{version_name}:")
-    for i, run in enumerate(runs, 1):
-        print(f"  Run {i}: Pass Rate = {run['avg_pass_rate']:.1f}% "
-              f"(Perfect: {run['perfect']}, Partial: {run['partial']}, Failed: {run['failed']})")
-    max_rate = max([run["avg_pass_rate"] for run in runs])
-    avg_rate = sum([run["avg_pass_rate"] for run in runs]) / len(runs)
-    print(f"  Max: {max_rate:.1f}% | Average: {avg_rate:.1f}%")
-print("="*80)
+    print("="*80)
+
+
+if __name__ == "__main__":
+    print("Starting visualization...")
+
+    # Get script directory
+    script_dir = Path(__file__).parent
+
+    # Collect results
+    all_results = collect_all_results(script_dir)
+
+    print("\nCollected results:")
+    for model_type, runs in sorted(all_results.items(), key=lambda x: (x[0] != 'Origin', x[0])):
+        print(f"  {model_type}: {len(runs)} runs")
+
+    if not all_results:
+        print("\n❌ No result files found!")
+        exit(1)
+
+    # Calculate statistics
+    model_stats = calculate_model_stats(all_results)
+
+    # Print summary
+    print_summary(model_stats)
+
+    # Generate visualization
+    plot_model_stats(model_stats, script_dir / 'model_stats_comparison.png')
+
+    print("\n✓ Visualization complete!")
