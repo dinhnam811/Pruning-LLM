@@ -22,8 +22,8 @@ def collect_all_results(results_dir='.'):
     # Manually specify the files for each model type
     file_mapping = {
         'Origin': [
-            'Origin-Qwen-eval-instruction-follow-1.txt',
-            'Origin-Qwen-eval-instruction-follow-2.txt',
+            'Original-Qwen-eval-instruction-follow-1.txt',
+            'Original-Qwen-eval-instruction-follow-2.txt',
             'Original-Qwen-eval-instruction-follow-3.txt',
             'Original-Qwen-eval-instruction-follow-4.txt',
             'Original-Qwen-eval-instruction-follow-5.txt',
@@ -34,18 +34,42 @@ def collect_all_results(results_dir='.'):
             'Original-Qwen-eval-instruction-follow-10.txt'
         ],
         '40': [
-            '40-Qwen-eval-instruction-follow-1st.txt',
-            '40-Qwen-eval-instruction-follow-2rd.txt',
-            '40-Qwen-eval-instruction-follow-3rd.txt'
+            '40-Qwen-eval-instruction-follow-1.txt',
+            '40-Qwen-eval-instruction-follow-2.txt',
+            '40-Qwen-eval-instruction-follow-3.txt',
+            '40-Qwen-eval-instruction-follow-4.txt',
+            '40-Qwen-eval-instruction-follow-5.txt',
+            '40-Qwen-eval-instruction-follow-6.txt',
+            '40-Qwen-eval-instruction-follow-7.txt',
+            '40-Qwen-eval-instruction-follow-8.txt',
+            '40-Qwen-eval-instruction-follow-9.txt',
+            '40-Qwen-eval-instruction-follow-10.txt'
         ],
         '20': [
-            '20-Qwen-eval-instruction-follow-1st.txt',
-            '20-Qwen-eval-instruction-follow-2nd.txt'
+            '20-Qwen-eval-instruction-follow-1.txt',
+            '20-Qwen-eval-instruction-follow-2.txt',
+            '20-Qwen-eval-instruction-follow-3.txt',
+            '20-Qwen-eval-instruction-follow-4.txt',
+            '20-Qwen-eval-instruction-follow-5.txt',
+            '20-Qwen-eval-instruction-follow-6.txt',
+            '20-Qwen-eval-instruction-follow-7.txt',
+            '20-Qwen-eval-instruction-follow-8.txt',
+            '20-Qwen-eval-instruction-follow-9.txt',
+            '20-Qwen-eval-instruction-follow-10.txt'
+
         ],
         '5': [
-            '5-Qwen-eval-instruction-follow-1st.txt',
-            '5-Qwen-eval-instruction-follow-2nd.txt',
-            '5-Qwen-eval-instruction-follow-3rd.txt'
+            '5-Qwen-eval-instruction-follow-1.txt',
+            '5-Qwen-eval-instruction-follow-2.txt',
+            '5-Qwen-eval-instruction-follow-3.txt',
+            '5-Qwen-eval-instruction-follow-4.txt',
+            '5-Qwen-eval-instruction-follow-5.txt',
+            '5-Qwen-eval-instruction-follow-6.txt',
+            '5-Qwen-eval-instruction-follow-7.txt',
+            '5-Qwen-eval-instruction-follow-8.txt',
+            '5-Qwen-eval-instruction-follow-9.txt',
+            '5-Qwen-eval-instruction-follow-10.txt'
+            
         ]
     }
 
@@ -64,7 +88,42 @@ def collect_all_results(results_dir='.'):
 
     return results
 
+def plot_models_all_run(all_results, output_file='model_pass_rates_all_runs.png'):
+    """Plot pass rates for all runs of each model as bar charts."""
+    # Sort models: Origin first, then others
+    models = sorted(all_results.keys(), key=lambda x: (x != 'Origin', x))
 
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    axes = axes.flatten()
+
+    colors = {'Origin': '#1f77b4', '5': '#ff7f0e', '20': '#2ca02c', '40': '#d62728'}
+
+    for idx, model_type in enumerate(models):
+        ax = axes[idx]
+        pass_rates = all_results[model_type]
+        runs = list(range(1, len(pass_rates) + 1))
+
+        bars = ax.bar(runs, pass_rates, color=colors.get(model_type, '#8c564b'), alpha=0.8)
+
+        ax.set_xlabel('Run Number', fontsize=11)
+        ax.set_ylabel('Pass Rate (%)', fontsize=11)
+        ax.set_title(f'{model_type} Model', fontsize=13, fontweight='bold')
+        ax.set_xticks(runs)
+        ax.set_ylim(0, 100)
+        ax.grid(axis='y', alpha=0.3)
+
+        # Add value labels on bars
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2., height,
+                   f'{height:.1f}',
+                   ha='center', va='bottom', fontsize=8)
+
+    plt.suptitle('Model Pass Rates Across All Runs', fontsize=16, fontweight='bold', y=0.995)
+    plt.tight_layout()
+    plt.savefig('model_pass_rates_all_runs.png', dpi=300, bbox_inches='tight')
+    print("✓ Saved: model_pass_rates_all_runs.png")
+    plt.show()
 def calculate_model_stats(all_results):
     """Calculate average, min, max scores for each model."""
     model_stats = {}
@@ -152,7 +211,7 @@ if __name__ == "__main__":
         print(f"  {model_type}: {len(runs)} runs")
 
     if not all_results:
-        print("\n❌ No result files found!")
+        print("\n No result files found!")
         exit(1)
 
     # Calculate statistics
@@ -163,5 +222,5 @@ if __name__ == "__main__":
 
     # Generate visualization
     plot_model_stats(model_stats, script_dir / 'model_stats_comparison.png')
-
+    plot_models_all_run(all_results, script_dir / 'model_pass_rates_all_runs.png')
     print("\n✓ Visualization complete!")
