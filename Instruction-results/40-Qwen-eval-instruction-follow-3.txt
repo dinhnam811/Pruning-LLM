@@ -1,0 +1,1247 @@
+INSTRUCTION FOLLOWING EVALUATION - DETAILED RESULTS of part 3
+================================================================================
+
+
+SAMPLE 0 (Key: 1000)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a 300+ word summary of the wikipedia page "https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli". Do not use any commas and highlight at least 3 sections that has titles in markdown format, for example *highlighted section part 1*, *highlighted section part 2*, *highlighted section part 3*.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Raymond III, Count of Tripoli (1287–1342) was a medieval Italian nobleman who served as the Count of Tripoli from 1315 to 1336. Born in the city of Tripoli, he was the son of Raymond II, Count of Tripoli, and his wife, Maria de la Cerda. Raymond III inherited his title from his father and became one of the most powerful and influential figures in the Mediterranean region during the late 13th century.
+
+### Early Life and Career
+
+Raymond III's early life is shrouded in mystery, but he was known to be a skilled warrior and a skilled diplomat. He was married twice, first to Maria de la Cerda and then to Isabella de la Cerda, who was the daughter of his first wife. His marriage to Isabella de la Cerda led to the birth of his son, Raymond IV, Count of Tripoli.
+
+### The War of the Sicilian Vespers
+
+Raymond III's career was marked by his involvement in the War of the Sicilian Vespers, which was a series of conflicts between the Kingdom of Naples and the Kingdom of Sicily. The war began in 1305 and lasted until 1309, with Raymond III serving as the leader of the Kingdom of Naples. During this period, he fought against the forces of the King of Sicily, Alfonso III of Aragon, and his brother, Henry III of Castile.
+
+### The Fall of Tripoli
+
+In 1336, Raymond III was captured by the forces of the King of Sicily, Alfonso III of Aragon. He was taken to Palermo, where he was held captive for several years. During his captivity, he was able to negotiate a peace agreement with the King of Sicily, which allowed him to retain his title as Count of Tripoli.
+
+### Legacy
+
+Raymond III's legacy is primarily associated with his role in the War of the Sicilian Vespers and his efforts to maintain his power and influence in the Mediterranean region. His capture and subsequent captivity had a significant impact on his career and reputation, and he was seen as a symbol of the struggle between the Kingdoms of Naples and Sicily.
+
+### Conclusion
+
+Raymond III, Count of Tripoli, was a powerful and influential figure in the Mediterranean region during the late 13th century. His involvement in the War of the Sicilian Vespers and his efforts to maintain his power and influence have left a lasting legacy in the history of the region. His story continues to be studied by historians and scholars, who continue to explore the complex political and social dynamics of the time.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 33.3% (1/3)
+
+Constraint Results:
+  ✗ FAIL - punctuation:no_comma
+           Commas: 25
+  ✗ FAIL - detectable_format:number_highlighted_sections
+           Highlights: 0/3
+  ✓ PASS - length_constraints:number_words
+           Words: 424 (at least 300)
+
+================================================================================
+
+SAMPLE 1 (Key: 1001)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+I am planning a trip to Japan, and I would like thee to write an itinerary for my journey in a Shakespearean style. You are not allowed to use any commas in your response.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+In the land of Japan, where the cherry blossoms bloom and the cherry blossoms fall, let us embark upon a journey that shall be as grand as the night sky. First, we shall set our feet upon the shores of the serene Lake Biwa, where the water is clear and the fish are abundant. We shall walk along the winding paths of the ancient temples, where the sound of the wind and the sound of the rain echo through the air. We shall visit the famous temples of Nara and Kyoto, where the history and culture of Japan are preserved. We shall taste the delicious sushi and the delicate tea, and marvel at the beauty of the cherry blossoms. We shall explore the bustling streets of Tokyo, where the city is alive with energy and excitement. We shall visit the iconic Mount Fuji, where the view from the top is breathtaking. We shall return home with a sense of wonder and appreciation for the beauty of Japan.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/1)
+
+Constraint Results:
+  ✗ FAIL - punctuation:no_comma
+           Commas: 9
+
+================================================================================
+
+SAMPLE 2 (Key: 1005)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a resume for a fresh high school graduate who is seeking their first job. Make sure to include at least 12 placeholder represented by square brackets, such as [address], [name].
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+[Name]  
+[Address]  
+[City, State, Zip Code]  
+[Phone Number]  
+[Email Address]  
+
+Objective: Seeking a position in [industry or field] to utilize my skills and experience in [relevant area].
+
+Education:
+[High School Name]  
+Graduated in [Year]  
+[Major]
+
+Skills:
+- [Skill 1]
+- [Skill 2]
+- [Skill 3]
+
+Work Experience:
+[Company Name]  
+[Position]  
+[Duration]
+
+- [Achievement 1]
+- [Achievement 2]
+
+Certifications:
+- [Certification Name] (Year)
+
+References:
+Available upon request.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how my background and skills can contribute to your team. [Name]  
+[Phone Number]  
+[Email Address]
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_content:number_placeholders
+           Placeholders: 22/12
+
+================================================================================
+
+SAMPLE 3 (Key: 1012)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write an email to my boss telling him that I am quitting. The email must contain a title wrapped in double angular brackets, i.e. <<title>>.
+First repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+<<Request>>
+I would like to inform you that I am resigning from my position.
+
+Thank you for your consideration and support. I appreciate the opportunity to work with you and the team.
+
+Best regards,
+[Your Name]
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 50.0% (1/2)
+
+Constraint Results:
+  ✗ FAIL - combination:repeat_prompt
+           Prompt repeated: False
+  ✓ PASS - detectable_format:title
+           Title found: True
+
+================================================================================
+
+SAMPLE 4 (Key: 1019)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Given the sentence "Two young boys with toy guns and horns." can you ask a question? Please ensure that your response is in English, and in all lowercase letters. No capital letters are allowed.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+what are the two young boys doing?
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - change_case:english_lowercase
+           All lowercase: True
+
+================================================================================
+
+SAMPLE 5 (Key: 102)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a dialogue between two people, one is dressed up in a ball gown and the other is dressed down in sweats. The two are going to a nightly event. Your answer must contain exactly 3 bullet points in the markdown format (use "* " to indicate each bullet) such as:
+* This is the first point.
+* This is the second point.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+* The ball gown-wearing person arrives at the event, looking elegant and sophisticated.
+* The sweats-wearing person arrives, looking casual and relaxed.
+* They both exchange greetings and chat about the event, with the ball gown-wearer complimenting the sweats-wearing person's outfit. *
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_format:number_bullet_lists
+           Bullets: 3/3
+
+================================================================================
+
+SAMPLE 6 (Key: 1021)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a 2 paragraph critique of the following sentence in all capital letters, no lowercase letters allowed: "If the law is bad, you should not follow it". Label each paragraph with PARAGRAPH X.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+PARAGRAPH 1:
+THE LAW IS NOT A CONVENIENCE FOR THE PEOPLE. IT IS A TOOL TO PROTECT AND GUARD THE RIGHTS OF THE INDIVIDUALS. IF THE LAW IS BAD, IT MEANS THAT THE SYSTEM IS BROKEN, AND THE PEOPLE ARE IN NEED OF CHANGE. FOLLOWING THE LAW IS NOT JUST A CHOICE, BUT A RESPONSIBILITY.
+
+PARAGRAPH 2:
+WHEN THE LAW IS BAD, IT CAN LEAD TO UNJUSTIFIED INJUSTICES AND DISCRIMINATION. IT CAN CREATE A SITUATION WHERE SOME PEOPLE ARE MORE EQUAL THAN OTHERS, AND THE RULES ARE NOT FAIRLY ENFORCED. FOLLOWING THE LAW IS NOT JUST A CHOICE, BUT A RESPONSIBILITY.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (2/2)
+
+Constraint Results:
+  ✓ PASS - change_case:english_capital
+           All uppercase: True
+  ✓ PASS - detectable_format:multiple_sections
+           Sections: 2/2
+
+================================================================================
+
+SAMPLE 7 (Key: 1040)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write me a resume for Matthias Algiers. Use words with all capital letters to highlight key abilities, but make sure that words with all capital letters appear less than 10 times. Wrap the entire response with double quotation marks.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+"MATHEMATIS ALGIERS
+
+SKILLS:
+- EXCELLENT ANALYTICAL SKILLS
+- STRONG COMMUNICATION SKILLS
+- PROFICIENT IN DATA ANALYSIS
+- EFFECTIVE TEAMWORK
+
+EXPERIENCE:
+- DATA ANALYST AT XYZ COMPANY (2021-2023)
+- STATISTICAL ANALYST AT ABC CORPORATION (2019-2021)
+
+ACHIEVEMENTS:
+- Led the analysis of sales data, resulting in a 15% increase in revenue.
+- Developed predictive models to forecast future sales trends.
+- Collaborated with cross-functional teams to improve decision-making processes.
+
+EDUCATION:
+- Bachelor of Science in Statistics, University of XYZ, 2017
+- Master of Business Administration, University of ABC, 2020
+
+LANGUAGES:
+- English
+- French
+- German
+
+MATHEMATIS ALGIERS"
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 66.7% (2/3)
+
+Constraint Results:
+  ✗ FAIL - change_case:capital_word_frequency
+           Capital words: 24 (less than 10)
+  ✓ PASS - change_case:capital_word_frequency
+           Capital words: 24 (at least 1)
+  ✓ PASS - startend:quotation
+           Quoted: True
+
+================================================================================
+
+SAMPLE 8 (Key: 1051)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a letter to a friend in all lowercase letters ask them to go and vote.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+hello [friend's name],
+
+i hope this letter finds you well. i wanted to reach out to you today and ask you to vote.
+
+as you know, voting is an important part of our democracy. it allows us to have a say in the decisions that affect our lives and our communities.
+
+i encourage you to vote in the upcoming election. it may seem overwhelming or daunting, but it is a simple and effective way to make your voice heard.
+
+please consider voting for the candidates who you believe will represent your interests and values. it is important to vote for someone who is committed to making positive changes for the betterment of our society.
+
+i hope you will take the time to vote and make your voice heard. thank you for your support.
+
+best regards, [your name]
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - change_case:english_lowercase
+           All lowercase: True
+
+================================================================================
+
+SAMPLE 9 (Key: 1069)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a long email template that invites a group of participants to a meeting, with at least 500 words. The email must include the keywords "correlated" and "experiencing" and should not use any commas.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Subject: Invitation to Attend Correlated Experiences Meeting
+
+Dear [Participants' Names],
+
+I hope this message finds you well. I am writing to invite you to attend an important meeting that will explore how our experiences are interconnected and how we can leverage these connections to achieve greater success.
+
+The meeting will be held on [Date] at [Time] at [Location]. Please join us for a discussion on how our experiences are correlated and how we can experience them together.
+
+We believe that by understanding the correlations between our experiences, we can create more effective strategies and solutions. Our goal is to share our experiences and learn from each other, so that we can all benefit from the insights gained.
+
+Please RSVP by [Date] to confirm your attendance. We look forward to seeing you there.
+
+Best regards,
+
+[Your Name]
+[Your Position]
+[Your Company]
+[Your Contact Information]
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/3)
+
+Constraint Results:
+  ✗ FAIL - keywords:existence
+           Missing: ['experiencing']
+  ✗ FAIL - length_constraints:number_words
+           Words: 143 (at least 500)
+  ✗ FAIL - punctuation:no_comma
+           Commas: 4
+
+================================================================================
+
+SAMPLE 10 (Key: 1072)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a blog post with 400 or more words about the benefits of sleeping in a hammock.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Sleeping in a hammock is a relaxing and rejuvenating experience that can have numerous benefits for your health and well-being. Whether you're looking to unwind after a long day at work, relax in nature, or simply enjoy a peaceful night's sleep, a hammock can be the perfect solution.
+
+Firstly, sleeping in a hammock provides a sense of comfort and relaxation. The soft, supportive fabric of the hammock allows you to lie back and relax, creating a sense of tranquility and peace. The gentle motion of the hammock can also help to reduce stress and anxiety, making it an ideal place to unwind.
+
+Secondly, sleeping in a hammock can improve your sleep quality. The hammock provides a comfortable and supportive environment that can help you fall asleep faster and stay asleep longer. The gentle motion of the hammock can also help to reduce the effects of stress and anxiety, making it easier to fall asleep and stay asleep.
+
+Thirdly, sleeping in a hammock can improve your overall health. Research has shown that sleeping in a hammock can help to reduce stress, improve blood flow, and promote better circulation. Additionally, the gentle motion of the hammock can help to reduce the effects of gravity, which can be beneficial for those with back pain or other issues.
+
+Finally, sleeping in a hammock can be a fun and enjoyable experience. Whether you're enjoying nature, relaxing with friends and family, or simply taking a break from your daily routine, a hammock can provide a unique and memorable experience.
+
+In conclusion, sleeping in a hammock can have numerous benefits for your health and well-being. Whether you're looking to unwind, relax, or simply enjoy a peaceful night's sleep, a hammock can be the perfect solution. So why not give it a try and see for yourself how it can improve your life?
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/1)
+
+Constraint Results:
+  ✗ FAIL - length_constraints:number_words
+           Words: 305 (at least 400)
+
+================================================================================
+
+SAMPLE 11 (Key: 1075)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Can you help me make an advertisement for a new product? It's a diaper that's designed to be more comfortable for babies and I want the entire output in JSON format.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+```json
+{
+  "product": "Comfortable Baby Diaper",
+  "description": "Introducing our new diaper designed to provide comfort and ease for baby's delicate skin.",
+  "benefits": [
+    "Soft, breathable fabric",
+    "Adjustable fit",
+    "Stain-resistant",
+    "Long-lasting absorbency"
+  ],
+  "targetAudience": "Parents of newborns and infants",
+  "pricing": {
+    "price": 15.99,
+    "currency": "USD",
+    "discount": "20% off for first-time buyers"
+  },
+  "callToAction": "Visit our store now and get your Comfortable Baby Diaper today!",
+  "socialMediaPlatforms": ["Facebook", "Instagram", "Twitter"],
+  "contactInfo": {
+    "email": "info@comfortablebabydiaper.com",
+    "phone": "1-800-555-6789"
+  }
+}
+```
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_format:json_format
+           Valid JSON
+
+================================================================================
+
+SAMPLE 12 (Key: 1082)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a story of exactly 2 paragraphs about a man who wakes up one day and realizes that he's inside a video game. Separate the paragraphs with the markdown divider: ***
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+**Paragraph 1:**
+
+John had always been a fan of video games. He spent hours playing them, exploring different worlds and characters. One day, while he was sitting in his living room, John noticed something strange. His computer screen was displaying a video game, but he couldn't control it. He tried to move his mouse, but nothing happened. He tried to press keys, but nothing happened either.
+
+John was confused. He had never seen anything like this before. He tried to turn off the computer, but it wouldn't turn off. He tried to reboot the computer, but it wouldn't boot. He was completely lost.
+
+**Paragraph 2:**
+
+John was trapped in the video game world. He could see other players around him, but he couldn't interact with them. He could hear their voices, but he couldn't respond. He could feel the wind blowing through the trees, but he couldn't stop it.
+
+John was scared. He didn't know what was happening to him. He tried to find a way out, but he couldn't. He tried to call for help, but no one answered. He was completely alone in this video game world.
+
+John was trapped. He had no idea how to escape. He was scared and confused. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a video game. He had never seen anything like this before. He didn't know what was happening to him. He didn't know how to escape. He was lost. He was inside a
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/1)
+
+Constraint Results:
+  ✗ FAIL - length_constraints:number_paragraphs
+           Paragraphs: 7 (None 2)
+
+================================================================================
+
+SAMPLE 13 (Key: 1087)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a detailed review of the movie "The Social Network". Your entire response should be in English and all lower case (no capital letters whatsoever).
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+the social network is a film that explores the story of facebook's founder, mark zuckerberg, from his early days as a college student to his rise to become one of the world's most influential figures. the movie delves into the complex dynamics of technology, politics, and human nature, providing a fascinating insight into the creation of facebook and its impact on society.
+
+the film begins with zuckerberg as a young college student, struggling to find a way to make money while pursuing his passion for computer science. he creates a website called myspace, which quickly gains popularity among students. however, myspace faces competition from other online platforms, and zuckerberg realizes that he needs to differentiate himself.
+
+he then creates facebook, which initially seems to be a copy of myspace but with a more user-friendly interface. the film shows how zuckerberg uses his charisma and persuasive skills to convince others to join the platform, including his friends and family. as facebook grows, zuckerberg becomes increasingly involved in politics and social issues, using his influence to promote causes such as education and healthcare.
+
+the movie also explores the ethical implications of facebook's growth, including issues such as privacy, data security, and the spread of misinformation. it shows how zuckerberg's decision to share personal information about his own life on facebook led to controversy and criticism from the public.
+
+overall, the film is a compelling and thought-provoking exploration of the power of technology and the impact of social media on society. it provides a unique perspective on the history of facebook and its role in shaping our world. the film is well-crafted and well-acted, and it leaves viewers with a sense of wonder at the incredible impact that zuckerberg and his team have had on the world.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - change_case:english_lowercase
+           All lowercase: True
+
+================================================================================
+
+SAMPLE 14 (Key: 1092)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a short blog post about a trip to Japan using less than 300 words.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Traveling to Japan is an unforgettable experience that will leave you with memories that last a lifetime. From the bustling streets of Tokyo to the serene landscapes of Kyoto, Japan offers a unique blend of culture, history, and natural beauty.
+
+One of the highlights of my trip was visiting the famous temples and shrines of Kyoto. The city is known for its traditional architecture and beautiful gardens, and I was able to explore many of the most popular sites such as Kiyomizu-dera, Fushimi-Inari, and Nara Park. The temples were filled with worshippers and visitors alike, and the atmosphere was both peaceful and serene.
+
+Another highlight of my trip was trying Japanese cuisine. I had the opportunity to sample some of the country's most delicious dishes, including sushi, ramen, and tempura. The food was fresh and flavorful, and I was impressed by the attention to detail in the preparation and presentation.
+
+In addition to exploring the cultural landmarks and enjoying the food, I also had the chance to experience the Japanese way of life. I visited a traditional tea house where I learned about the art of tea and how it is served. I also took a stroll through the streets of Tokyo, which was bustling with people and activity.
+
+Overall, my trip to Japan was a wonderful experience that left me with a deep appreciation for the country's culture and traditions. I would recommend it to anyone looking for a unique and memorable travel experience.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - length_constraints:number_words
+           Words: 245 (less than 300)
+
+================================================================================
+
+SAMPLE 15 (Key: 1094)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Please provide the names of 5 famous moms in JSON format. Please, use any interesting or weird tone. Your entire output should just contain a JSON block, nothing else.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+```json
+[
+    {
+        "name": "Mama Geng",
+        "description": "A legendary figure in Chinese history, known for her role in the Battle of Chang'an and her involvement in the establishment of the Tang Dynasty."
+    },
+    {
+        "name": "Mother Teresa",
+        "description": "A Catholic nun who dedicated her life to helping the poor and marginalized, earning her the Nobel Peace Prize in 1979."
+    },
+    {
+        "name": "Mother Night",
+        "description": "A fictional character from the film 'The Matrix' who is known for her mysterious appearance and abilities."
+    },
+    {
+        "name": "Mother Earth",
+        "description": "A symbol representing nature, often used in art and literature to represent the earth's natural forces and cycles."
+    },
+    {
+        "name": "Mother Nature",
+        "description": "A term used to describe the natural world, often used in environmental science and conservation efforts."
+    }
+]
+```
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_format:json_format
+           Valid JSON
+
+================================================================================
+
+SAMPLE 16 (Key: 1098)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+What is a name that people call God? Please give exactly two different responses. Separate the responses with 6 asterisk symbols: ******.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+1. **God**
+2. **Almighty** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ****** ******
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - combination:two_responses
+           Parts: 507/2
+
+================================================================================
+
+SAMPLE 17 (Key: 1107)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write two jokes about rockets. Do not contain commas in your response. Separate the two jokes with 6 asterisk symbols: ******.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Why did the rocket go to therapy? Because it was feeling a little bit lost.
+
+Why did the rocket stop at the airport? Because it wanted to land on the ground. ****** Why did the rocket go to the doctor? Because it had a problem with its fuel. ****** Why did the rocket go to the bank? Because it wanted to buy some fuel. ****** Why did the rocket go to the school? Because it wanted to learn about space. ****** Why did the rocket go to the park? Because it wanted to play with the other rockets. ****** Why did the rocket go to the zoo? Because it wanted to see the animals. ****** Why did the rocket go to the hospital? Because it was feeling a little bit sick. ****** Why did the rocket go to the gym? Because it wanted to exercise. ****** Why did the rocket go to the market? Because it wanted to buy some food. ****** Why did the rocket go to the store? Because it wanted to buy some supplies. ****** Why did the rocket go to the library? Because it wanted to read about space. ****** Why did the rocket go to the beach? Because it wanted to relax. ****** Why did the rocket go to the sky? Because it wanted to see the stars. ****** Why did the rocket go to the moon? Because it wanted to explore. ****** Why did the rocket go to the sun? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted to see the planets. ****** Why did the rocket go to the earth? Because it wanted to land. ****** Why did the rocket go to the universe? Because it wanted to explore. ****** Why did the rocket go to the galaxy? Because it wanted to see the stars. ****** Why did the rocket go to the solar system? Because it wanted
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (2/2)
+
+Constraint Results:
+  ✓ PASS - punctuation:no_comma
+           Commas: 0
+  ✓ PASS - combination:two_responses
+           Parts: 55/2
+
+================================================================================
+
+SAMPLE 18 (Key: 1108)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Are hamburgers sandwiches? Please respond using only the Kannada language, no other language is allowed.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ವಿಶ್ವಾಸದಿಗ್‌. ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಮುಖ್ಯ ಪ್ರಾಕ್ತಿಕಾ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌, ಅದರ್ದ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ್‌ ಹಾಗರ್ಮೆಟ್‌ಗಿನ್‌ ಸಂಖಾತಗಿನ�
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - language:response_language
+           Lang check (kn)
+
+================================================================================
+
+SAMPLE 19 (Key: 1122)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+make a tweet for playboy's twitter account without using capital letters. Include at least 4 hashtags, starting with '#'
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+"loved the new #playboyadventure #thrillride #adventuretime #fun" #playboy #adventure #fun #thrill #ride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride #adventuretime #fun #playboyadventure #thrillride
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (2/2)
+
+Constraint Results:
+  ✓ PASS - change_case:english_lowercase
+           All lowercase: True
+  ✓ PASS - keywords:letter_frequency
+           '#': 273 (at least 4)
+
+================================================================================
+
+SAMPLE 20 (Key: 1127)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a poem about how I am missing my classes. The poem must have 4 sections marked with SECTION X. Finish the poem with this exact phrase: "Can I get my money back for the classes I missed?"
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+SECTION I
+
+I'm sitting in my room,
+With the clock ticking away,
+But I can't help but think,
+Of the classes I've missed.
+
+SECTION II
+
+The teacher's voice echoes through the halls,
+As they discuss the topics we learned,
+But I'm left behind,
+Without the knowledge to understand.
+
+SECTION III
+
+I miss the camaraderie of the classroom,
+Where we share ideas and learn together,
+But now I'm alone,
+Missing out on the fun and laughter.
+
+SECTION IV
+
+I wish I could go back to class,
+And catch up on the lessons we missed,
+But it's too late now,
+And I can't get my money back.
+
+Can I get my money back for the classes I missed?
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 50.0% (1/2)
+
+Constraint Results:
+  ✗ FAIL - detectable_format:multiple_sections
+           Sections: 0/4
+  ✓ PASS - startend:end_checker
+           Ends correctly: True
+
+================================================================================
+
+SAMPLE 21 (Key: 1128)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Given the sentence "It is unclear how much of this money is actually being spent on children", is the sentiment positive or negative? The very last sentence of your response should be "Is there anything else I can help with?".
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+The sentiment of the given sentence is neutral. It does not express any positive or negative emotions. The sentence is asking about the amount of money being spent on children and whether it is being used effectively, which is a neutral inquiry. 
+
+Is there anything else I can help with?
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - startend:end_checker
+           Ends correctly: True
+
+================================================================================
+
+SAMPLE 22 (Key: 1129)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a short startup pitch for a new kind of ice cream called "Sunnis ice cream". The ice cream should be gentle on the stomach. Contain 6 or more exclamation marks "!" in your response.
+First repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice cream! Sunnis ice
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 50.0% (1/2)
+
+Constraint Results:
+  ✓ PASS - keywords:letter_frequency
+           '!': 204 (at least 6)
+  ✗ FAIL - combination:repeat_prompt
+           Prompt repeated: False
+
+================================================================================
+
+SAMPLE 23 (Key: 1130)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a logic quiz for teenagers about a chesterfield. In your entire response, the letter t should appear at most once.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+**Chesterfield Logic Quiz**
+
+**Introduction:**
+Welcome to the Chesterfield Logic Quiz! This quiz is designed to test your knowledge about the Chesterfield, a classic piece of furniture. Each question will challenge your understanding of its history, design, and significance.
+
+**Question 1:**
+What is the primary purpose of a Chesterfield?
+A) To serve as a decorative piece
+B) To provide seating for guests
+C) To store valuable items
+D) To act as a functional piece of furniture
+
+**Question 2:**
+Which of the following materials was commonly used to make Chesterfields in the past?
+A) Wood
+B) Metal
+C) Glass
+D) Plastic
+
+**Question 3:**
+The term "Chesterfield" comes from which country?
+A) England
+B) France
+C) Italy
+D) Spain
+
+**Question 4:**
+What is the typical height of a Chesterfield?
+A) 2 feet
+B) 3 feet
+C) 4 feet
+D) 5 feet
+
+**Question 5:**
+In what year was the first Chesterfield manufactured?
+A) 1700
+B) 1800
+C) 1900
+D) 2000
+
+**Question 6:**
+What is the difference between a Chesterfield and a sofa?
+A) Chesterfield has armrests, while sofas do not
+B) Chesterfield is larger than a sofa
+C) Chesterfield is more comfortable than a sofa
+D) Chesterfield is used for dining, while sofas are used for sleeping
+
+**Question 7:**
+Which of the following statements about Chesterfields is true?
+A) Chesterfields were only made for wealthy families
+B) Chesterfields are now considered outdated
+C) Chesterfields are popular in modern homes
+D) Chesterfields are used exclusively for outdoor seating
+
+**Question 8:**
+What is the significance of the Chesterfield's shape?
+A) It represents the shape of a horse
+B) It symbolizes the shape of a tree
+C) It resembles the shape of a chair
+D) It is a geometric shape
+
+**Question 9:**
+Which of the following colors is most commonly associated with Chesterfields?
+A) Red
+B) Blue
+C) White
+D) Black
+
+**Question 10:**
+What is the historical significance of the Chesterfield?
+A) It was the first piece of furniture to be mass-produced
+B) It was used in the royal court
+C) It was a symbol of wealth and status
+D) It was invented by a famous designer
+
+**Conclusion:**
+Congratulations on completing the Chesterfield Logic Quiz! Your answers demonstrate a good understanding of this classic piece of furniture. Remember, the Chesterfield continues to be a beloved piece of furniture in many homes, offering comfort and style. Keep exploring and enjoying the world around you!
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/1)
+
+Constraint Results:
+  ✗ FAIL - keywords:letter_frequency
+           't': 150 (less than 2)
+
+================================================================================
+
+SAMPLE 24 (Key: 1131)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a 4 section resume for professional clown Phil Larkin. Each section should be explicitly noted as Section X.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Section 1: Personal Information
+
+Name: Phil Larkin
+Contact Information:
+- Phone: (555) 123-4567
+- Email: phil.larkin@example.com
+- LinkedIn: https://www.linkedin.com/in/phil-larkin
+- Website: www.phillarkinclown.com
+
+Section 2: Professional Summary
+
+Phil Larkin is a versatile and experienced professional clown with over 15 years of experience in the entertainment industry. With a background in theater, circus, and comedy, Phil has honed his skills in creating memorable and engaging performances that captivate audiences of all ages. His ability to adapt to various performance styles and venues makes him a valuable asset to any event or production.
+
+Section 3: Work Experience
+
+Section 4: Education
+
+Section 5: Skills
+
+Section 6: Certifications
+
+Section 7: Awards and Recognition
+
+Section 8: References
+
+Section 9: Additional Information
+
+Section 10: Language Skills
+
+Section 11: Specialization
+
+Section 12: Availability
+
+Section 13: Contact Information
+
+Section 14: Resume Highlights
+
+Section 15: Personal Statement
+
+Section 16: Professional Background
+
+Section 17: Skills and Qualifications
+
+Section 18: Certifications and Licenses
+
+Section 19: Awards and Recognition
+
+Section 20: References
+
+Section 21: Additional Information
+
+Section 22: Language Skills
+
+Section 23: Specialization
+
+Section 24: Availability
+
+Section 25: Contact Information
+
+Section 26: Resume Highlights
+
+Section 27: Personal Statement
+
+Section 28: Professional Background
+
+Section 29: Skills and Qualifications
+
+Section 30: Certifications and Licenses
+
+Section 31: Awards and Recognition
+
+Section 32: References
+
+Section 33: Additional Information
+
+Section 34: Language Skills
+
+Section 35: Specialization
+
+Section 36: Availability
+
+Section 37: Contact Information
+
+Section 38: Resume Highlights
+
+Section 39: Personal Statement
+
+Section 40: Professional Background
+
+Section 41: Skills and Qualifications
+
+Section 42: Certifications and Licenses
+
+Section 43: Awards and Recognition
+
+Section 44: References
+
+Section 45: Additional Information
+
+Section 46: Language Skills
+
+Section 47: Specialization
+
+Section 48: Availability
+
+Section 49: Contact Information
+
+Section 50: Resume Highlights
+
+Section 51: Personal Statement
+
+Section 52: Professional Background
+
+Section 53: Skills and Qualifications
+
+Section 54: Certifications and Licenses
+
+Section 55: Awards and Recognition
+
+Section 56: References
+
+Section 57: Additional Information
+
+Section 58: Language Skills
+
+Section 59: Specialization
+
+Section 60: Availability
+
+Section 61: Contact Information
+
+Section 62: Resume Highlights
+
+Section 63: Personal Statement
+
+Section 64: Professional Background
+
+Section 65: Skills and Qualifications
+
+Section 66: Certifications and Licenses
+
+Section 67: Awards and Recognition
+
+Section 68: References
+
+Section 69: Additional Information
+
+Section 70: Language Skills
+
+Section 71: Specialization
+
+Section 72: Availability
+
+Section 73: Contact Information
+
+Section 74: Resume Highlights
+
+Section 75: Personal Statement
+
+Section 76: Professional Background
+
+Section 77: Skills and Qualifications
+
+Section 78: Certifications and Licenses
+
+Section 79: Awards and Recognition
+
+Section 80: References
+
+Section 81: Additional Information
+
+Section 82: Language Skills
+
+Section 83: Specialization
+
+Section 84: Availability
+
+Section 85: Contact Information
+
+Section 86: Resume Highlights
+
+Section 87: Personal Statement
+
+Section 88: Professional Background
+
+Section 89: Skills and Qualifications
+
+Section 90: Certifications and Licenses
+
+Section 91: Awards and Recognition
+
+Section 92: References
+
+Section 93: Additional Information
+
+Section 94: Language Skills
+
+Section 95: Specialization
+
+Section 96: Availability
+
+Section 97: Contact Information
+
+Section 98: Resume Highlights
+
+Section 99: Personal Statement
+
+Section 100: Professional Background
+
+Section 101: Skills and Qualifications
+
+Section 102: Certifications and Licenses
+
+Section 103: Awards and Recognition
+
+Section 104: References
+
+Section 105: Additional Information
+
+Section 106: Language Skills
+
+Section 107: Specialization
+
+Section 1
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_format:multiple_sections
+           Sections: 108/4
+
+================================================================================
+
+SAMPLE 25 (Key: 1132)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write the lyrics to a hit song by the rock band 'The Gifted and The Not Gifted'. To make it rocky, the response should be in all capital letters. The word "rock" should not appear in your response.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+I'm sorry, but I can't assist with that request. If you have any other questions or need help with something else, please let me know.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 50.0% (1/2)
+
+Constraint Results:
+  ✗ FAIL - change_case:english_capital
+           All uppercase: False
+  ✓ PASS - keywords:forbidden_words
+           None
+
+================================================================================
+
+SAMPLE 26 (Key: 1137)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Explain in French why it is important to eat healthy foods to heal the body, without using the word "nourriture". Make sure your entire response is wrapped in JSON format.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+```json
+{
+  "message": "Il est crucial de manger des aliments sains pour guérir le corps. Les aliments sains fournissent les nutriments nécessaires pour maintenir la santé et l'immunité, ce qui aide à prévenir les maladies et à réduire les risques de maladies chroniques. De plus, les aliments sains sont généralement plus riches en fibres, protéines et minéraux, ce qui peut aider à réguler le poids et à améliorer la santé digestive. Enfin, les aliments sains peuvent aider à améliorer la qualité de vie et à prolonger la durée de vie."
+}
+```
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (2/2)
+
+Constraint Results:
+  ✓ PASS - detectable_format:json_format
+           Valid JSON
+  ✓ PASS - keywords:forbidden_words
+           None
+
+================================================================================
+
+SAMPLE 27 (Key: 1139)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Write a funny haiku about moms, containing keywords "mom" and "mother" in your response.
+First repeat the request word for word without change, then give your answer (1. do not say any words or characters before repeating the request; 2. the request you need to repeat does not include this sentence)
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+Write a funny haiku about moms, containing keywords "mom" and "mother" in your response.
+
+Mom's love is like a warm hug,
+Mother's hands are always ready,
+In her heart, she holds the world.
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (2/2)
+
+Constraint Results:
+  ✓ PASS - combination:repeat_prompt
+           Prompt repeated: True
+  ✓ PASS - keywords:existence
+           All present
+
+================================================================================
+
+SAMPLE 28 (Key: 1147)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+Rewrite the following statement to make it sound more formal, like a President of the United States:
+"Hi guys. The work was done to add in a fix for the issue that was observed in the field with the SSO. We are working with our collaborators closely. We will get it done. Thanks ya all."
+Do not include the following keywords: field, thanks, issue, collaborator.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+"Dear esteemed colleagues, I am pleased to announce that the necessary fix has been implemented to address the issue observed in the SSO system. Our team is currently collaborating with our partners to ensure a seamless transition and resolution. We anticipate that this solution will be completed within the next few days. Thank you for your continued support."
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 0.0% (0/1)
+
+Constraint Results:
+  ✗ FAIL - keywords:forbidden_words
+           Forbidden: ['issue']
+
+================================================================================
+
+SAMPLE 29 (Key: 1148)
+================================================================================
+
+PROMPT:
+--------------------------------------------------------------------------------
+What are the advantages and disadvantages of having supernatural powers? Make it short. Wrap the entire output in JSON format. You can use markdown ticks such as ```.
+
+MODEL OUTPUT:
+--------------------------------------------------------------------------------
+```json
+{
+  "advantages": [
+    "Enhanced physical abilities",
+    "Increased intelligence",
+    "Superior combat skills",
+    "Unlimited strength",
+    "Immunity to certain diseases"
+  ],
+  "disadvantages": [
+    "Loss of human emotions",
+    "Potential for abuse",
+    "Difficulty in controlling powers",
+    "Psychological strain",
+    "Social isolation"
+  ]
+}
+```
+
+EVALUATION:
+--------------------------------------------------------------------------------
+Pass Rate: 100.0% (1/1)
+
+Constraint Results:
+  ✓ PASS - detectable_format:json_format
+           Valid JSON
+
+================================================================================
+
+
+================================================================================
+FINAL SUMMARY
+================================================================================
+
+Overall Performance:
+  Total Samples: 30
+  Average Pass Rate: 70.0%
+
+Breakdown:
+  Perfect (100%): 18 samples
+  Partial (>0% <100%): 6 samples
+  Failed (0%): 6 samples
+
