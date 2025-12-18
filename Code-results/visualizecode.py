@@ -108,6 +108,12 @@ ax3.set_xticklabels(ax3.get_xticklabels(), rotation=0)
 ax3.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=8)
 ax3.grid(axis='y', alpha=0.3)
 
+# Add total count labels on top of each bar
+for i, difficulty in enumerate(pivot.index):
+    total = pivot.loc[difficulty].sum()
+    ax3.text(i, total + 0.3, f'total = {int(total)}', 
+            ha='center', va='bottom', fontsize=9, fontweight='bold')
+
 # 4. Success rate by difficulty
 ax4 = plt.subplot(3, 3, 5)
 difficulty_stats = df.groupby('Difficulty').apply(
