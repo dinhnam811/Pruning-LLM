@@ -19,7 +19,7 @@ COLORS = {'Accepted': '#2ecc71', 'Wrong Answer': '#e74c3c',
 # Load Excel file
 # =========================
 print("Loading data...")
-df = pd.read_excel("C:/Users/namnd/Documents/Pruning-LLM-1/Code-results/OriginalStatic.xlsx")
+df = pd.read_excel("C:/Users/namnd/Documents/Pruning-LLM-1/Code-results/5QwenStatic.xlsx")
 
 # Clean up
 df["Status"] = df["Status"].str.strip()
@@ -54,7 +54,11 @@ print("="*80 + "\n")
 # =========================
 # Create comprehensive visualization
 # =========================
+# Extract model name from filename
+model_name = "Qwen 5% Prune Static"  # You can change this to match your model name
 fig = plt.figure(figsize=(14, 10))
+fig.suptitle(f'{model_name} - LeetCode Performance Analysis',
+             fontsize=16, fontweight='bold', y=0.995)
 
 # 1. Status distribution with percentages
 ax1 = plt.subplot(3, 3, 1)
