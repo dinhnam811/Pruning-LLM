@@ -259,8 +259,9 @@ def plot_constraint_heatmap(constraint_stats, output_file='question_constraint_h
                 vmin=0, vmax=100, cbar_kws={'label': 'Pass Rate (%)'})
 
     plt.xlabel('Model Type', fontsize=12)
-    plt.ylabel('Question - Constraint', fontsize=12)
-    plt.title('Per-Constraint Pass Rate Across Models (Grouped by Constraint Type)', fontsize=14, fontweight='bold')
+    plt.ylabel('Question - Constraint Types', fontsize=12)
+    plt.title('Per-Constraint Pass Rate Across Models (Grouped by Constraint Type)',
+              fontsize=14, fontweight='bold', loc='center', pad=20)
     plt.tight_layout()
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     print(f"✓ Saved: {output_file}")
@@ -282,7 +283,8 @@ def plot_question_heatmap(question_stats, output_file='question_heatmap.png'):
                 vmin=0, vmax=100, cbar_kws={'label': 'Pass Rate (%)'})
     plt.xlabel('Model Type', fontsize=12)
     plt.ylabel('Question ID', fontsize=12)
-    plt.title('Per-Question Average Pass Rate Across Models', fontsize=14, fontweight='bold')
+    plt.title('Per-Question Average Pass Rate Across Models',
+              fontsize=14, fontweight='bold', loc='center', pad=20)
     plt.tight_layout()
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     print(f"✓ Saved: {output_file}")
